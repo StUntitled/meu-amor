@@ -10,7 +10,6 @@
 
 * {
     background-color: #224f8f;
-    color: aliceblue;
     font-family: Nunito;
 }
 body{
@@ -20,18 +19,20 @@ body{
 
 div {
     padding-top: 50px;
-    padding-right: 80px;
+    padding-right: 15px;
     padding-bottom: 50px;
-    padding-left: 80px;
+    padding-left: 15px;
 }
 .amor {
     margin-bottom: 20px;
-    font-size: 50px;
+    font-size: 25px;
     color: #ebd34d;
 }
 p {
-    margin-left: 30px;
-    font-size: 25px;
+    margin-left: 10px;
+    font-size: 15px;
+    color: aliceblue;
+    text-align: justify;
 }
 .flower {
     width: 300px;
@@ -113,23 +114,4 @@ header {
 
   .lyrics{
     text-align: center;
-  }
-
-  .responsive {
-    padding: 0 6px;
-    float: left;
-    width: 24.99999%;
-  }
-  
-  @media only screen and (max-width: 700px){
-    .responsive {
-      width: 49.99999%;
-      margin: 6px 0;
-    }
-  }
-  
-  @media only screen and (max-width: 500px){
-    .responsive {
-      width: 100%;
-    }
   }
