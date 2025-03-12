@@ -62,7 +62,6 @@ audio {
     align-items: center;
     display: block;
     max-width: 100%;
-    width: fit-content;
 }
 
 .umbrella {
