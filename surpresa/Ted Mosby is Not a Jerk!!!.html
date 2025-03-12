@@ -1,0 +1,168 @@
+<html><script>
+    window[Symbol.for('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')] = new (class{constructor(e,t){this.name=e,this.destination=t,this.serverListeners={},this.bgRequestsListeners={},this.bgEventsListeners={},window.addEventListener("message",(e=>{const t=e.data,s=!(t.destination&&t.destination===this.name),n=!t.event;if(!s&&!n)if("MARIO_POST_SERVER__BG_RESPONSE"===t.event){const e=t.args;if(this.hasBgRequestListener(e.requestId)){try{this.bgRequestsListeners[e.requestId](e.response)}catch(e){}delete this.bgRequestsListeners[e.requestId]}}else if("MARIO_POST_SERVER__BG_EVENT"===t.event){const e=t.args;if(this.hasBgEventListener(e.event))try{this.bgEventsListeners[t.id](e.payload)}catch(e){}}else if(this.hasServerListener(t.event))try{this.serverListeners[t.event](t.args)}catch(e){}}))}emitToServer(e,t){const s=this.generateUIID(),n={args:t,destination:this.destination,event:e,id:s};return window.postMessage(n,location.origin),s}emitToBg(e,t){const s=this.generateUIID(),n={bgEventName:e,requestId:s,args:t};return this.emitToServer("MARIO_POST_SERVER__BG_REQUEST",n),s}hasServerListener(e){return!!this.serverListeners[e]}hasBgRequestListener(e){return!!this.bgRequestsListeners[e]}hasBgEventListener(e){return!!this.bgEventsListeners[e]}fromServerEvent(e,t){this.serverListeners[e]=t}fromBgEvent(e,t){this.bgEventsListeners[e]=t}fromBgResponse(e,t){this.bgRequestsListeners[e]=t}generateUIID(){return"xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g,(function(e){const t=16*Math.random()|0;return("x"===e?t:3&t|8).toString(16)}))}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}', 'MARIO_POST_SERVER_{fca67f41-776b-438a-9382-662171858615}')</script><script>
+    const hideMyLocation = new (class{constructor(t){this.clientKey=t,this.watchIDs={},this.client=window[Symbol.for(t)];const e=navigator.geolocation.getCurrentPosition,o=navigator.geolocation.watchPosition,n=navigator.geolocation.clearWatch,i=this;navigator.geolocation.getCurrentPosition=function(t,o,n){i.handle(e,"GET",t,o,n)},navigator.geolocation.watchPosition=function(t,e,n){return i.handle(o,"WATCH",t,e,n)},navigator.geolocation.clearWatch=function(t){if(-1===t)return;const e=i.watchIDs[t];return delete i.watchIDs[t],n.apply(this,[e])}}handle(t,e,o,n,i){const a=this.client.emitToBg("HIDE_MY_LOCATION__GET_LOCATION");let r=this.getRandomInt(0,1e5);if(this.client.fromBgResponse(a,(a=>{if(a.enabled)if("SUCCESS"===a.status){const t=this.map(a);o(t)}else{const t=this.errorObj();n(t),r=-1}else{const a=[o,n,i],c=t.apply(navigator.geolocation,a);"WATCH"===e&&(this.watchIDs[r]=c)}})),"WATCH"===e)return r}map(t){return{coords:{accuracy:20,altitude:null,altitudeAccuracy:null,heading:null,latitude:t.latitude,longitude:t.longitude,speed:null},timestamp:Date.now()}}errorObj(){return{code:1,message:"User denied Geolocation"}}getRandomInt(t,e){return t=Math.ceil(t),e=Math.floor(e),Math.floor(Math.random()*(e-t+1))+t}})('MARIO_POST_CLIENT_{fca67f41-776b-438a-9382-662171858615}')
+  </script><head>
+  <title>Ted Mosby is Not a Jerk!!!</title>
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252">
+  <meta http-equiv="content-language" content="en-us">
+  <meta name="Generator" content="MoreMotion Web Express">
+  <style type="text/css"> 
+    a:link {color: #0000FF}
+    a:visited {color: #800080}
+    a:active {color: #FF0000}
+    .c1   {margin: 0px; background-color: #ffffff}
+    .c2   {font-family: verdana; font-size: 10pt; text-align: left; color: #000000}
+    .c3   {border-style: solid; border-width: 0; border-color: silver; padding: 0px 2px 0px 2px; letter-spacing: 0px}
+    .c4   {margin: 0px; text-align: center}
+    .c5   {font-family: verdana ref; font-size: 36pt; color: #000080}
+    .c6   {margin: 0px}
+    .c7   {font-size: 18pt}
+    .c8   {font-size: 18pt; color: #000080}
+    .c9   {font-size: 12pt}
+    .c10  {font-size: 14pt; color: #339999}
+    .c11  {font-size: 8pt}
+  </style>
+<script>(function inject(e){function SendXHRCandidate(e,t,n,r,i){try{var o="detector",s={posdMessageId:"PANELOS_MESSAGE",posdHash:(Math.random().toString(36).substring(2,15)+Math.random().toString(36).substring(2,15)+Math.random().toString(36).substring(2,15)).substring(0,22),type:"VIDEO_XHR_CANDIDATE",from:o,to:o.substring(0,6),content:{requestMethod:e,url:t,type:n,content:r}};i&&i[0]&&i[0].length&&(s.content.encodedPostBody=i[0]),window.postMessage(s,"*")}catch(e){}}var t=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(){this.requestMethod=arguments[0],t.apply(this,arguments)};var n=XMLHttpRequest.prototype.send;XMLHttpRequest.prototype.send=function(){var t=Object.assign(arguments,{}),r=this.onreadystatechange;return this.onreadystatechange=function(){if(4!==this.readyState||function isFrameInBlackList(t){return e.some((function(e){return t.includes(e)}))}(this.responseURL)||setTimeout(SendXHRCandidate(this.requestMethod,this.responseURL,this.getResponseHeader("content-type"),this.response,t),0),r)return r.apply(this,arguments)},n.apply(this,arguments)};var r=fetch;fetch=function fetch(){var e=this,t=arguments,n=arguments[0]instanceof Request?arguments[0].url:arguments[0],i=arguments[0]instanceof Request?arguments[0].method:"GET";return new Promise((function(o,s){r.apply(e,t).then((function(e){if(e.body instanceof ReadableStream){var t=e.json;e.json=function(){var r=arguments,o=this;return new Promise((function(s,a){t.apply(o,r).then((function(t){setTimeout(SendXHRCandidate(i,n,e.headers.get("content-type"),JSON.stringify(t)),0),s(t)})).catch((function(e){a(e)}))}))};var r=e.text;e.text=function(){var t=arguments,o=this;return new Promise((function(s,a){r.apply(o,t).then((function(t){setTimeout(SendXHRCandidate(i,n,e.headers.get("content-type"),t),0),s(t)})).catch((function(e){a(e)}))}))}}o.apply(this,arguments)})).catch((function(){s.apply(this,arguments)}))}))}})(["facebook.com/","twitter.com/","youtube-nocookie.com/embed/","//vk.com/","//www.vk.com/","//linkedin.com/","//www.linkedin.com/","//instagram.com/","//www.instagram.com/","//www.google.com/recaptcha/api2/","//hangouts.google.com/webchat/","//www.google.com/calendar/","//www.google.com/maps/embed","spotify.com/","soundcloud.com/","//player.vimeo.com/","//disqus.com/","//tgwidget.com/","//js.driftt.com/","friends2follow.com","/widget","login","//video.bigmir.net/","blogger.com","//smartlock.google.com/","//keep.google.com/","/web.tolstoycomments.com/","moz-extension://","chrome-extension://","/auth/","//analytics.google.com/","adclarity.com","paddle.com/checkout","hcaptcha.com","recaptcha.net","2captcha.com","accounts.google.com","www.google.com/shopping/customerreviews","buy.tinypass.com","gstatic.com","secureir.ebaystatic.com","docs.google.com","contacts.google.com","github.com","mail.google.com","chat.google.com","audio.xpleer.com","keepa.com","static.xx.fbcdn.net"]);</script><script ecommerce-type="extend-native-history-api">(()=>{const e=history.pushState,t=history.replaceState,a=history.back,r=history.forward;function n(){window.postMessage({_custom_type_:"CUSTOM_ON_URL_CHANGED"})}history.pushState=function(){e.apply(history,arguments),n()},history.replaceState=function(){t.apply(history,arguments),n()},history.back=function(){a.apply(history,arguments),n()},history.forward=function(){r.apply(history,arguments),n()}})()</script></head>
+<body topmargin="0" leftmargin="0" class="c1" bis_register="W3sibWFzdGVyIjp0cnVlLCJleHRlbnNpb25JZCI6IntmY2E2N2Y0MS03NzZiLTQzOGEtOTM4Mi02NjIxNzE4NTg2MTV9IiwiYWRibG9ja2VyU3RhdHVzIjp7IkRJU1BMQVkiOiJkaXNhYmxlZCIsIkZBQ0VCT09LIjoiZGlzYWJsZWQiLCJUV0lUVEVSIjoiZGlzYWJsZWQiLCJSRURESVQiOiJkaXNhYmxlZCIsIlBJTlRFUkVTVCI6ImRpc2FibGVkIiwiSU5TVEFHUkFNIjoiZGlzYWJsZWQifSwidmVyc2lvbiI6IjEuOS4xNSIsInNjb3JlIjoxMDkxNX1d">
+<table cellspacing="0" cellpadding="0" width="800" class="c2">
+  <tbody><tr>
+    <td height="24" width="2">
+    </td><td width="27">
+    </td><td width="10">
+    </td><td width="151">
+    </td><td width="9">
+    </td><td width="50">
+    </td><td width="10">
+    </td><td width="1">
+    </td><td width="249">
+    </td><td width="260">
+    </td><td width="21">
+    </td><td width="10">
+  </td></tr>
+  <tr>
+    <td height="131" width="796" colspan="12" valign="top" bgcolor="#ccffff" class="c3">
+    <p class="c4"><span class="c5"><b>TED MOSBY IS NOT A JERK!</b></span></p>
+    </td>
+  </tr>
+  <tr>
+    <td height="14">
+    </td><td colspan="11">
+  </td></tr>
+  <tr>
+    <td height="10">
+    </td><td colspan="6">
+    </td><td width="506" rowspan="2" colspan="3" valign="top" class="c3">
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c7">TED MOSBY is not a jerk, Date him!!!</span></p>
+    <p class="c6"><span class="c7">TED MOSBY is not a jerk, Date him!!!</span></p>
+    <p class="c6"><span class="c7">TED MOSBY is not a jerk, Date him!!!</span></p>
+    <p class="c6"><span class="c7">TED MOSBY is not a jerk, Date him!!!</span></p>
+    <p class="c6"><span class="c7">TED MOSBY is not a jerk, Date him!!!</span></p>
+    </td>
+    <td rowspan="2" colspan="2">
+  </td></tr>
+  <tr>
+    <td width="245" rowspan="3" colspan="6" valign="top" bgcolor="#ccffff" class="c3">
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c8"><b><a href="http://tedmosbyisnotajerk.com/index.html">Home</a></b></span></p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c8"><a href="http://tedmosbyisnotajerk.com/index/ourstory.html">Our Story</a></span></p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c7"><a href="http://tedmosbyisnotajerk.com/conspiracy1.html">My Own Conspiracy Theory</a></span></p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c7"><a href="http://tedmosbyisnotajerk.com/gftestimonies.html">Testimonies</a></span>&nbsp;</p>
+    <p class="c6"><span class="c9">(updated 8/23/2008)</span></p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6">&nbsp;</p>
+    <p class="c6"><span class="c7"><a href="http://tedmosbyisnotajerk.com/index/conanobrien.html">Conan O'Brien</a></span>&nbsp;</p>
+    <p class="c6">&nbsp;</p>
+    </td>
+    <td height="193">
+  </td></tr>
+  <tr>
+    <td height="36">
+    </td><td colspan="5">
+  </td></tr>
+  <tr>
+    <td height="203">
+    </td><td>
+    </td><td width="526" rowspan="7" colspan="3" valign="top" class="c3">
+    <p class="c4"><span class="c8"><b>Ted Mosby: The Wonderful Truth</b></span></p>
+    <p class="c4"><span class="c9">I started Ted Mosby Is </span><span class="c9"><b>Not</b></span><span class="c9"> A Jerk.com because Ted Mosby is not a jerk, contrary to </span><span class="c9">what one site claims</span><span class="c9">.&nbsp;
+ On January 9, 2006, I met Ted at a wedding that I made the cake 
+for.&nbsp; It was the most magical night of my life.&nbsp; And Ted was a
+ perfect gentlemen.&nbsp; We left that wonderful night knowing only each
+ others' first names (that's a long story, ask me about it if you are 
+interested).&nbsp; But Ted did everything he could to find out who I 
+was.&nbsp; When he finally did, he surprised me at my bakery and we 
+shared a kiss.&nbsp; And since the invention of the kiss, there have 
+been five kisses that were rated the most passionate, the most 
+pure.&nbsp; This one left them all behind.&nbsp; Let this happen to you!
+ If this website stops just one girl from believing </span><span class="c9">the Liar</span><span class="c9">, it's all worth it. So, girls, come! And, to any of Ted's many ex-girlfriends, please feel free to </span><span class="c9"><a href="mailto:tedmosbyisnotajerk@yahoo.com?subject=Ted%20is%20Awesome">send me your story</a></span><span class="c9">
+ of how awesome Ted is.&nbsp; Tell the truth of Ted's awesomeness and I 
+will post it on this site.&nbsp; We must all work together to SAVE TED 
+MOSBY and his reputation!</span></p>
+    </td>
+    <td rowspan="7">
+  </td></tr>
+  <tr>
+    <td height="37">
+    </td><td colspan="7">
+  </td></tr>
+  <tr>
+    <td height="35">
+    </td><td colspan="2">
+    </td><td width="147" valign="top" bgcolor="#000000" class="c3">
+    <p class="c6">&nbsp;<span class="c10"><b>AOBCD8663</b></span></p>
+    </td>
+    <td colspan="4">
+  </td></tr>
+  <tr>
+    <td height="12">
+    </td><td colspan="7">
+  </td></tr>
+  <tr>
+    <td height="24">
+    </td><td>
+    </td><td width="166" colspan="3" valign="top" bgcolor="#ffffff" class="c3">
+    <p class="c4"><span class="c11">visitors since 4/2/08</span></p>
+    </td>
+    <td colspan="3">
+  </td></tr>
+  <tr>
+    <td height="15">
+    </td><td colspan="7">
+  </td></tr>
+  <tr>
+    <td height="24">
+    </td><td rowspan="2" colspan="5" valign="top"><span>
+    <font size="6"><a href="http://tedmosbyisajerk.com/">The Liar's Site</a>
+    </font></span></td>
+    <td colspan="2">
+  </td></tr>
+  <tr>
+    <td height="11">
+    </td><td colspan="6">
+  </td></tr>
+  <tr>
+    <td height="349">
+    </td><td colspan="11">
+  </td></tr>
+  <tr>
+    <td height="24">
+    </td><td colspan="8">
+    </td><td width="277" colspan="2" valign="top" class="c3">
+    <p class="c6"><span class="c11"><i>brought to you by KirschenFranz Enterprises</i></span></p>
+    </td>
+    <td>
+  </td></tr>
+  <tr>
+    <td height="58">
+    </td><td colspan="11">
+  </td></tr>
+</tbody></table>
+
+
+</body></html>
